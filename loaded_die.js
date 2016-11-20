@@ -1,27 +1,30 @@
-var counter = 0;
 
-var countdownGenerator = function (x) {
+
+var loadedDie = (function () {
+  var list = [5, 4, 6, 1, 6, 4, 2, 3, 3, 5];
+
   /* your code here */
-  return function() {
-    var blastOff = x - counter;
-    counter ++;
-    if (blastOff > 0) {
-      return("T-minus: " + blastOff );
-
-    } else if (blastOff === 0) {
-      return ("Blast Off!!!")
-
-    } else {
-      return "Rockets already gone, bub!"
+  //var roll = 0;  //var roll = list;
+  var roll = 0;
+  //var roll = list[0];
+  return function () {
+    var list2 = list[roll];
+    roll++
+    if(roll === 10){
+      roll = 0;
     }
+    return list2;
   }
 
-};
 
-var countdown = countdownGenerator(3);
-console.log(countdown()); // T-minus 3...
-console.log(countdown()); // T-minus 2...
-console.log(countdown()); // T-minus 1...
-console.log(countdown()); // Blast Off!
-console.log(countdown()); // Rockets already gone, bub!
-console.log(countdown()); // Rockets already gone, bub!
+
+})();
+
+console.log(loadedDie());  // 5
+console.log(loadedDie());  // 4
+console.log(loadedDie());  // 6
+console.log(loadedDie());  // 1
+console.log(loadedDie());  // 6
+console.log(loadedDie());  // 4
+//////////
+
